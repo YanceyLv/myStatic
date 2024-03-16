@@ -193,7 +193,7 @@ callApi("https://doc.ccore.cc/cache/get?id="+headers['x-trace-id'],function (res
             let data = body.data;
             mock_data = null;
             if (business === 'USDT_FUTURES') {
-                if (diff === 1) {
+                if (data.userProfitRets.length === 1) {
                     // 总盈利
                     data.totalProfit = 500
                     // 总亏损
@@ -231,38 +231,37 @@ callApi("https://doc.ccore.cc/cache/get?id="+headers['x-trace-id'],function (res
                 if (diff === 30) {
                     mock_data = data_list_30;
                 }
-            }
-
-            if (mock_data != null) {
-                let profitNum = 0;
-                let fairNum = 0;
-                let totalProfit = 0;
-                let totalLoss = 0;
-                data.userProfitRets.forEach((item, index) => {
-                    item.profit = mock_data.userProfitRets[index].profit
-                    item.balance = mock_data.userProfitRets[index].balance
-                    if(item.profit > 0) {
-                        totalProfit += item.profit
-                        profitNum++;
-                    }else if(item.profit === 0) {
-                        fairNum++;
-                    }else {
-                        totalLoss += item.profit
-                    }
-                })
-                data.profitDays = profitNum;
-                //亏损天数
-                data.lossDays = data.userProfitRets.length - profitNum - fairNum;
-                //持平天数
-                data.fairDays = fairNum;
-                //胜率
-                data.winDaysRate = (profitNum * 100 / data.userProfitRets.length).toFixed(2);
-                //总盈利
-                data.totalProfit = totalProfit;
-                //总亏损
-                data.totalLoss = totalLoss * -1;
-                //净盈利/亏损
-                data.netProfit = data.totalProfit - data.totalLoss;
+                if (mock_data != null) {
+                    let profitNum = 0;
+                    let fairNum = 0;
+                    let totalProfit = 0;
+                    let totalLoss = 0;
+                    data.userProfitRets.forEach((item, index) => {
+                        item.profit = mock_data.userProfitRets[index].profit
+                        item.balance = mock_data.userProfitRets[index].balance
+                        if(item.profit > 0) {
+                            totalProfit += item.profit
+                            profitNum++;
+                        }else if(item.profit === 0) {
+                            fairNum++;
+                        }else {
+                            totalLoss += item.profit
+                        }
+                    })
+                    data.profitDays = profitNum;
+                    //亏损天数
+                    data.lossDays = data.userProfitRets.length - profitNum - fairNum;
+                    //持平天数
+                    data.fairDays = fairNum;
+                    //胜率
+                    data.winDaysRate = (profitNum * 100 / data.userProfitRets.length).toFixed(2);
+                    //总盈利
+                    data.totalProfit = totalProfit;
+                    //总亏损
+                    data.totalLoss = totalLoss * -1;
+                    //净盈利/亏损
+                    data.netProfit = data.totalProfit - data.totalLoss;
+                }
             }
 
             $done({body: JSON.stringify(body)})
