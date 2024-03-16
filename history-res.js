@@ -194,7 +194,36 @@ callApi("https://doc.ccore.cc/cache/get?id="+headers['x-trace-id'],function (res
             mock_data = null;
             if (business === 'USDT_FUTURES') {
                 if (diff === 1) {
-                    mock_data = today_data;
+                    // 总盈利
+                    data.totalProfit = 500
+                    // 总亏损
+                    data.totalLoss = 0
+                    // 净盈利/亏损
+                    data.netProfit = 500
+                    // 盈利天数
+                    data.profitDays = 1
+                    // 亏损天数
+                    data.lossDays = 0
+                    // 未产生盈利亏损天数
+                    data.fairDays = 0
+                    // 盈利天数占比
+                    data.winDaysRate = 1.0
+                    // 平均盈利
+                    data.averageProfit = 10
+                    // 平均亏损
+                    data.averageLoss = 0
+        
+                    data.userProfitRets = [
+                        {
+                            "userId": 526310661,
+                            "day": 1710547200000,
+                            "balance": 1600,
+                            "netInflow": 0.00000000,
+                            "profit": 500,
+                            "debt": null,
+                            "transferIn": 0.00000000
+                        }
+                    ]
                 }
                 if (diff === 7) {
                     mock_data = data_list_7;
