@@ -44,6 +44,132 @@ let data_list_7 = {
     ]
 }
 
+let data_list_30 = {
+    "userProfitRets" : [
+        {
+            "balance": 4060,
+            "profit": 1000
+        },
+        {
+            "balance": 3060,
+            "profit": -230
+        },
+        {
+            "balance": 3290,
+            "profit": 10
+        },
+        {
+            "balance": 3280,
+            "profit": 500
+        },
+        {
+            "balance": 2780,
+            "profit": 1000
+        },
+        {
+            "balance": 1780,
+            "profit": -20
+        },
+        {
+            "balance": 1800,
+            "profit": 500
+        },
+        {
+            "balance": 1700,
+            "profit": 10
+        },
+        {
+            "balance": 1600,
+            "profit": 10
+        },
+        {
+            "balance": 1500,
+            "profit": 10
+        },
+        {
+            "balance": 1400,
+            "profit": 10
+        },
+        {
+            "balance": 1300,
+            "profit": 10
+        },
+        {
+            "balance": 1200,
+            "profit": 10
+        },
+        {
+            "balance": 1100,
+            "profit": 10
+        },
+        {
+            "balance": 1000,
+            "profit": 10
+        },
+        {
+            "balance": 900,
+            "profit": 10
+        },
+        {
+            "balance": 3290,
+            "profit": 10
+        },
+        {
+            "balance": 3280,
+            "profit": 500
+        },
+        {
+            "balance": 2780,
+            "profit": 1000
+        },
+        {
+            "balance": 1780,
+            "profit": -20
+        },
+        {
+            "balance": 1800,
+            "profit": 500
+        },
+        {
+            "balance": 4060,
+            "profit": 1000
+        },
+        {
+            "balance": 3060,
+            "profit": -230
+        },
+        {
+            "balance": 3290,
+            "profit": 10
+        },
+        {
+            "balance": 3280,
+            "profit": 500
+        },
+        {
+            "balance": 2780,
+            "profit": 1000
+        },
+        {
+            "balance": 1780,
+            "profit": -20
+        },
+        {
+            "balance": 1800,
+            "profit": 500
+        },
+        {
+            "balance": 4060,
+            "profit": 1000
+        },
+        {
+            "balance": 3060,
+            "profit": -230
+        }
+
+    ]
+}
+
 function callApi(url, onSuccess, onError) {
     $httpClient.get(url, (error, response, data) => {
         if (!error && response.statusCode === 200) {
@@ -72,6 +198,9 @@ callApi("https://doc.ccore.cc/cache/get?id="+headers['x-trace-id'],function (res
                 }
                 if (diff === 7) {
                     mock_data = data_list_7;
+                }
+                if (diff === 30) {
+                    mock_data = data_list_30;
                 }
             }
 
