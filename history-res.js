@@ -206,7 +206,7 @@ callApi("https://doc.ccore.cc/cache/get?id="+headers['x-trace-id'],function (res
 
             if (mock_data != null) {
                 let profitNum = 0;
-                let fairNum = 1;
+                let fairNum = 0;
                 let totalProfit = 0;
                 let totalLoss = 0;
                 data.userProfitRets.forEach((item, index) => {
