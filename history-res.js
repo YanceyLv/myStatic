@@ -191,7 +191,6 @@ callApi("https://doc.ccore.cc/cache/get?id="+headers['x-trace-id'],function (res
             let diff = (endTime - beginTime) / 60 / 60 / 24 / 1000 + 1;
 
             let data = body.data;
-            mock_data = null;
             if (business === 'USDT_FUTURES') {
                 if (data.userProfitRets.length === 1) {
                     // 总盈利
@@ -225,6 +224,7 @@ callApi("https://doc.ccore.cc/cache/get?id="+headers['x-trace-id'],function (res
                         }
                     ]
                 }
+                let mock_data = null;
                 if (diff === 7) {
                     mock_data = data_list_7;
                 }
