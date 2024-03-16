@@ -5,8 +5,8 @@ let headers = $request.headers
 let today_data = {
     "userProfitRets": [
         {
-            "balance": 4060,
-            "profit": 1000
+            "balance": 1800,
+            "profit": 500
         }
     ]
 }
@@ -163,8 +163,8 @@ let data_list_30 = {
             "profit": 1000
         },
         {
-            "balance": 3060,
-            "profit": -230
+            "balance": 1800,
+            "profit": 500
         }
 
     ]
