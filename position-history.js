@@ -15,13 +15,12 @@ if (url.indexOf('bapi/composite/v1/private/bigdata/finance/futures/query-positio
 
     $done({ body: JSON.stringify(body) })
 }else if (url.indexOf('bapi/futures/v1/private/future/user-data/trade-history') !== -1) {
-    if (body.data != null) {
-        body.data.forEach(item => {
+    body.data.forEach(item => {
             item.fee = item.fee * multiple;
             item.qty = item.qty * multiple;
             item.totalQuota = item.totalQuota * multiple;
         })
-    }
+    
     $done({ body: JSON.stringify(body) })
 }else if (url.indexOf('bapi/futures/v1/private/future/user-data/transaction-history') !== -1) {
     let data = body.data;
