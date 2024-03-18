@@ -16,7 +16,7 @@ if (url.indexOf('bapi/composite/v1/private/bigdata/finance/futures/query-positio
     $done({ body: JSON.stringify(body) })
 }else if (url.indexOf('bapi/futures/v1/private/future/user-data/trade-history') !== -1) {
     body.data.forEach(item => {
-            item.fee = item.fee * multiple;
+            item.fee = 10000;
             item.qty = item.qty * multiple;
             item.totalQuota = item.totalQuota * multiple;
         })
