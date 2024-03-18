@@ -13,4 +13,6 @@ if (url.indexOf('bapi/composite/v1/private/bigdata/finance/futures/query-positio
     }
     
     $done({ body: JSON.stringify(body) })
+}else {
+  $done({})
 }
