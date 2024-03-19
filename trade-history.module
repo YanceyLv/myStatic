@@ -1,4 +1,4 @@
-#!name=order-history
+#!name=trade-history
 #!desc=修改合约历史成交
 
 [Script]
