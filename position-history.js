@@ -28,6 +28,7 @@ if (url.indexOf('bapi/futures/v1/private/future/user-data/transaction-history') 
             item.fee = 10000;
             item.qty = item.qty * multiple;
             item.totalQuota = item.totalQuota * multiple;
+            item.realizedProfit = item.realizedProfit * multiple;
         })
     
     $done({ body: JSON.stringify(body) })
@@ -35,7 +36,7 @@ if (url.indexOf('bapi/futures/v1/private/future/user-data/transaction-history') 
     let data = body.data;
     if (data != null) {
         data.forEach(item => {
-            item.delegateMoney = item.delegateMoney * multiple;
+            item.executedQuoteQty = item.executedQuoteQty * multiple;
         })
     }
     $done({ body: JSON.stringify(body) })
