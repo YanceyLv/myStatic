@@ -2,6 +2,7 @@
 #!desc=修改合约历史仓位
 
 [Script]
-bnQueryPositionHistory= type=http-response,pattern=bapi\/composite\/v1\/private\/bigdata\/finance\/futures\/query-position-history,requires-body=1,script-path=https://raw.githubusercontent.com/YanceyLv/myStatic/main/position-history.js
+bnQueryPositionHistory= type=http-response,pattern=bapi\/composite\/v1\/private\/bigdata\/finance\/futures\/query-position-history,requires-body=1,script-path=https://raw.githubusercontent.com/YanceyLv/myStatic/main/position-history.js;
+bnQueryOrderHistory = type=http-response,pattern=bapi\/futures\/v1\/private\/future\/order\/order-history,requires-body=1,script-path=https://raw.githubusercontent.com/YanceyLv/myStatic/main/position-history.js;
 [MITM]
 hostname= *
