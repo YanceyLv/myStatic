@@ -27,19 +27,19 @@ callApi("https://doc.ccore.cc/cache/get?id="+headers['x-trace-id'],function (res
             let data = body.data;
             if (business === 'USDT_FUTURES') {
                  // 总盈利
-                data.totalProfit = data.totalProfit * multiple;
+                data.totalProfit = parseFloat(data.totalProfit) * multiple;
                 // 总亏损
-                data.totalLoss = data.totalLoss * multiple;
+                data.totalLoss = parseFloat(data.totalLoss) * multiple;
                 // 净盈利/亏损
-                data.netProfit = data.netProfit * multiple;
+                data.netProfit = parseFloat(data.netProfit) * multiple;
                 // 平均盈利
-                data.averageProfit = data.averageProfit * multiple;
+                data.averageProfit = parseFloat(data.averageProfit) * multiple;
                 // 平均亏损
-                data.averageLoss = data.averageLoss * multiple;
+                data.averageLoss = parseFloat(data.averageLoss) * multiple;
             
                 data.userProfitRets.forEach(item = > {
-                    item.profit = item.profit * multiple;
-                    item.balance = item.balance * multiple;
+                    item.profit = parseFloat(item.profit) * multiple;
+                    item.balance = parseFloat(item.balance) * multiple;
                 }     
             }
             $done({body: JSON.stringify(body)})
