@@ -36,6 +36,11 @@ callApi("https://doc.ccore.cc/cache/get?id="+headers['x-trace-id'],function (res
                 data.averageProfit = parseFloat(data.averageProfit) * multiple;
                 // 平均亏损
                 data.averageLoss = parseFloat(data.averageLoss) * multiple;
+
+                data.userProfitRets.forEach(item => {
+                    item.profit = item.profit * multiple;
+                    item.balance = item.balance * multiple;
+                })
             
     
             }
