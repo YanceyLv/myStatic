@@ -2,7 +2,7 @@
 let url = $request.url
 let body = JSON.parse($response.body)
 
-let multiple = 1000;
+let multiple = 100;
 if (url.indexOf('bapi/futures/v1/private/future/user-data/transaction-history') !== -1) {
     let data = body.data;
     if (data != null) {
