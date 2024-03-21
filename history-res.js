@@ -26,6 +26,31 @@ callApi("https://doc.ccore.cc/cache/get?id="+headers['x-trace-id'],function (res
 
             let data = body.data;
             if (business === 'USDT_FUTURES') {
+                if (data.userProfitRets.length === 1) {
+                    // 总盈利
+                    data.totalProfit = data.totalProfit * multiple;
+                    // 总亏损
+                    data.totalLoss = data.totalLoss * multiple;
+                    // 净盈利/亏损
+                    data.netProfit = data.netProfit * multiple;
+                    // 盈利天数
+                    data.profitDays = data.netProfit > 0 ? 1 : 0;
+                    // 亏损天数
+                    data.lossDays = data.netProfit > 0 ? 0 : 1;
+                    // 未产生盈利亏损天数
+                    data.fairDays = data.netProfit === 0 ? 1 : 0;
+                    // 盈利天数占比
+                    data.winDaysRate = data.netProfit > 0 ? 1.0 : 0;
+                    // 平均盈利
+                    data.averageProfit = data.averageProfit * multiple;
+                    // 平均亏损
+                    data.averageLoss = data.averageLoss * multiple;
+
+                    data.userProfitRets.forEach(item => {
+                        item.balance = item.balance * multiple;
+                        item.profit = item.profit * multiple;
+                    })
+                }
                  // 总盈利
                 data.totalProfit = parseFloat(data.totalProfit) * multiple;
                 // 总亏损
