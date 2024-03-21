@@ -37,10 +37,7 @@ callApi("https://doc.ccore.cc/cache/get?id="+headers['x-trace-id'],function (res
                 // 平均亏损
                 data.averageLoss = parseFloat(data.averageLoss) * multiple;
             
-                data.userProfitRets.forEach(item = > {
-                    item.profit = parseFloat(item.profit) * multiple;
-                    item.balance = parseFloat(item.balance) * multiple;
-                }     
+    
             }
             $done({body: JSON.stringify(body)})
         } else {
