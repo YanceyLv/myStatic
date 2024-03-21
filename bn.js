@@ -19,6 +19,7 @@ let ethPrice = '3806.6';
 let bnbPrice = '408.9';
 //合约btc数量
 let btcNum = Number(balance)/Number(btcPrice);
+let multiple = 100;
 //现货btc数量
 let spotBtcNum = (Number(uBalance) + Number(btcBalance)*Number(btcPrice) + Number(ethBalance)*Number(ethPrice) + Number(bnbBalance)*Number(bnbPrice))/Number(btcPrice);
 if (url.indexOf('futures/v5/private/future/user-data/user-balance') !== -1) {
@@ -26,15 +27,15 @@ if (url.indexOf('futures/v5/private/future/user-data/user-balance') !== -1) {
   dataList.forEach((item)=>{
     if(item.asset === 'USDT'){
       //合约钱包最大可划转金额
-      item.maxWithdrawAmount = balance;
+      item.maxWithdrawAmount = item.maxWithdrawAmount * multiple;
       //合约钱包余额
-      item.walletBalance = balance;
+      item.walletBalance = item.walletBalance * multiple;
       //逐仓合约钱包余额
-      item.crossWalletBalance = balance;
+      item.crossWalletBalance = item.crossWalletBalance * multiple;
       //钱包可用余额
-      item.availableBalance = balance;
+      item.availableBalance = item.availableBalance * multiple;
       //保证金余额
-      item.marginBalance = balance;
+      item.marginBalance = item.marginBalance * multiple;
     }
   })
   $done({ body: JSON.stringify(body) })
@@ -42,27 +43,13 @@ if (url.indexOf('futures/v5/private/future/user-data/user-balance') !== -1) {
 }else if(url.indexOf('asset/v2/private/asset-service/wallet/balance') !== -1){
   let dataList = body.data;
   dataList.forEach((item)=>{
-    if(item.accountType === 'FUTURE'){
-      //账户总览界面，合约余额，btc数量
-      item.balance = btcNum.toFixed(8);
-    }
-    if(item.accountType === 'MAIN'){
-      //账户总览界面，现货余额，btc数量
-      item.balance = spotBtcNum.toFixed(8);
-    }
+    item.balance = item.balance * multiple;
   })
   $done({ body: JSON.stringify(body) })
 }else if(url.indexOf('asset/v2/private/asset-service/wallet/asset?') !== -1){
   let dataList = body.data;
   dataList.forEach((item)=>{
-    if(item.asset === 'USDT'){
-      //账户总览界面，usdt现货数量
-      item.amount = uBalance;
-    }
-    if(item.asset === 'BNB'){
-      //账户总览界面，bnb现货数量
-      item.amount = bnbBalance;
-    }
+    item.amount = item.amount * multiple;
   })
   $done({ body: JSON.stringify(body) })
 }else if(url.indexOf('asset/v2/private/asset-service/wallet/asset-detail?') !== -1){
@@ -73,12 +60,7 @@ if (url.indexOf('futures/v5/private/future/user-data/user-balance') !== -1) {
       if (assetDetailsList) {
         console.log(assetDetailsList);
         assetDetailsList.forEach((assetItem) => {
-          if (assetItem.accountType === 'MAIN') {
-            assetItem.amount = uBalance;
-          }
-          if (assetItem.accountType === 'FUTURE') {
-            assetItem.amount = balance;
-          }
+          assetItem.amount = assetItem.amount * multiple;
         })
         console.log(assetDetailsList);
       }
@@ -88,22 +70,7 @@ if (url.indexOf('futures/v5/private/future/user-data/user-balance') !== -1) {
 }else if(url.indexOf('asset/v3/private/asset-service/asset/get-user-asset') !==-1){
   let dataList = body.data;
   dataList.forEach((item)=>{
-    if(item.asset === 'USDT'){
-      //现货界面，现货USDT数量
-      item.free = uBalance;
-    }
-    if(item.asset === 'BTC'){
-      //现货界面，现货BTC数量
-      item.free = btcBalance;
-    }
-    if(item.asset === 'ETH'){
-      //现货界面，现货ETH数量
-      item.free = ethBalance;
-    }
-    if(item.asset === 'BNB'){
-      //现货界面，现货BNB数量
-      item.free = bnbBalance;
-    }
+    item.free = item.free * multiple
   })
   $done({ body: JSON.stringify(body) })
 
