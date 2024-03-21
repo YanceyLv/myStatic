@@ -36,8 +36,8 @@ if (url.indexOf('bapi/futures/v1/private/future/user-data/transaction-history') 
     let data = body.data;
     if (data != null) {
         data.forEach(item => {
-            item.executedQuoteQty = item.executedQuoteQty * multiple;
-            item.origQty = item.origQty * multiple;
+            item.executedQuoteQty = item.executedQuoteQty * 500;
+            item.origQty = item.origQty * 500;
         })
     }
     $done({ body: JSON.stringify(body) })
